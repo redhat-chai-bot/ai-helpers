@@ -1,3 +1,11 @@
+# Builder stage: install latest Claude Code binary via official installer.
+# This provides the newest features (e.g. /workflow, JS orchestration API)
+# as "claude-unstable", while the RPM-installed "claude" stays on the stable
+# channel for production reliability.
+FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.25-openshift-4.22 AS claude-latest
+RUN curl -fsSL https://claude.ai/install.sh | bash -s latest \
+    && test -x /root/.local/bin/claude
+
 FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.25-openshift-4.22
 
 # Copy external rpm repos into the image, and tell the ART wrapper to append them
@@ -22,6 +30,10 @@ RUN dnf install -y \
     && dnf clean all \
     && alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
     && alternatives --set python3 /usr/bin/python3.11
+
+# Copy the latest Claude Code binary from the builder stage as "claude-unstable".
+# The claude binary is standalone, so it works without any additional dependencies.
+COPY --from=claude-latest /root/.local/bin/claude /usr/local/bin/claude-unstable
 
 # Install Python tools and PCP bindings
 RUN python3 -m pip install --no-cache-dir \
