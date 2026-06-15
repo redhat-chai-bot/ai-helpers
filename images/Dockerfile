@@ -1,3 +1,42 @@
+# Builder stage: install latest Claude Code binary and verify its integrity
+# against the signed release manifest.
+# This provides the newest features (e.g. /workflow, JS orchestration API)
+# as "claude-unstable", while the RPM-installed "claude" stays on the stable
+# channel for production reliability.
+# Ref: https://code.claude.com/docs/en/setup#binary-integrity-and-code-signing
+FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.25-openshift-4.22 AS claude-latest
+RUN set -euo pipefail \
+    # 1. Import the Anthropic release-signing GPG key
+    && curl -fsSL https://downloads.claude.ai/keys/claude-code.asc | gpg --import \
+    # 2. Install the latest Claude Code binary
+    && curl -fsSL https://claude.ai/install.sh | bash -s latest \
+    && test -x /root/.local/bin/claude \
+    # 3. Determine installed version
+    && CLAUDE_VERSION=$(/root/.local/bin/claude --version 2>&1 \
+       | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1) \
+    && echo "Installed claude version: ${CLAUDE_VERSION}" \
+    # 4. Download the signed manifest for this version
+    && RELEASES=https://downloads.claude.ai/claude-code-releases \
+    && curl -fsSL -o /tmp/manifest.json \
+       "${RELEASES}/${CLAUDE_VERSION}/manifest.json" \
+    && curl -fsSL -o /tmp/manifest.json.sig \
+       "${RELEASES}/${CLAUDE_VERSION}/manifest.json.sig" \
+    # 5. Verify manifest GPG signature (fails build if invalid)
+    && gpg --verify /tmp/manifest.json.sig /tmp/manifest.json \
+    # 6. Verify binary SHA256 against the signed manifest
+    && EXPECTED=$(python3 -c "                                    \
+        import json, sys;                                         \
+        m = json.load(open('/tmp/manifest.json'));                 \
+        p = m.get('platforms', {});                                \
+        e = p.get('linux-x64') or p.get('linux-x86_64') or {};    \
+        cs = e.get('checksum', '');                                \
+        cs = cs.removeprefix('sha256:');                           \
+        print(cs) if cs else sys.exit('ERROR: no linux checksum') \
+    ") \
+    && ACTUAL=$(sha256sum /root/.local/bin/claude | awk '{print $1}') \
+    && [ "${EXPECTED}" = "${ACTUAL}" ] \
+    && echo "Binary integrity verified: checksum matches signed manifest"
+
 FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.25-openshift-4.22
 
 # Copy external rpm repos into the image, and tell the ART wrapper to append them
@@ -22,6 +61,10 @@ RUN dnf install -y \
     && dnf clean all \
     && alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
     && alternatives --set python3 /usr/bin/python3.11
+
+# Copy the latest Claude Code binary from the builder stage as "claude-unstable".
+# The claude binary is standalone, so it works without any additional dependencies.
+COPY --from=claude-latest /root/.local/bin/claude /usr/local/bin/claude-unstable
 
 # Install Python tools and PCP bindings
 RUN python3 -m pip install --no-cache-dir \
