@@ -2202,8 +2202,8 @@ footer a { color: var(--primary); }
     },
     {
       "name": "olm",
-      "description": "OLM (Operator Lifecycle Manager) plugin for operator management and debugging",
-      "version": "0.1.2",
+      "description": "OLM (Operator Lifecycle Manager) plugin for operator management, debugging, and FBC release tracing",
+      "version": "0.2.0",
       "has_readme": true,
       "commands": [
         {
@@ -2277,6 +2277,14 @@ footer a { color: var(--primary); }
           "description_html": "Get detailed status and health information for an operator",
           "synopsis": "/olm:status \u003coperator-name\u003e [namespace]",
           "body_html": "\u003cp\u003eThe \u003ccode\u003eolm:status\u003c/code\u003e command provides comprehensive health and status information for a specific operator in an OpenShift cluster. It displays detailed information about the operator&#x27;s CSV, Subscription, InstallPlan, deployments, and pods to help diagnose issues and verify proper operation.\u003c/p\u003e\u003cp\u003eThis command helps you:\u003cbr\u003e- Check if an operator is running with all pods ready and no errors\u003cbr\u003e- Diagnose installation or upgrade problems\u003cbr\u003e- View operator version and available updates\u003cbr\u003e- Inspect operator deployments and pods\u003cbr\u003e- Review recent events and conditions\u003cbr\u003e- Identify resource issues or configuration problems\u003c/p\u003e"
+        },
+        {
+          "name": "trace",
+          "full_name": "olm:trace",
+          "description": "Trace an FBC operator release back to its source git revision to verify whether a specific bug fix is included in a shipped z-stream",
+          "description_html": "Trace an FBC operator release back to its source git revision to verify whether a specific bug fix is included in a shipped z-stream",
+          "synopsis": "/olm:trace \u003coperator-name\u003e \u003cocp-version\u003e [--commit \u003csha\u003e] [--bug \u003cid\u003e]",
+          "body_html": "\u003cp\u003eThe \u003ccode\u003eolm:trace\u003c/code\u003e command traces an FBC (File-Based Catalog) operator release back to its source git revision. This is essential for answering the question: &quot;Is my bug fix included in the shipped z-stream release?&quot;\u003c/p\u003e\u003cp\u003eFBC operators in OpenShift are built via Konflux pipelines. Each shipped operator image carries metadata (labels and annotations) that record the exact git commit used to build it. This command walks the chain from the shipped catalog entry back to the source repository commit, enabling you to verify whether a specific fix is present.\u003c/p\u003e"
         },
         {
           "name": "uninstall",
