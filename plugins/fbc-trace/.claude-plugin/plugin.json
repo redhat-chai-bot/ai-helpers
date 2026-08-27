@@ -1,0 +1,8 @@
+{
+  "name": "fbc-trace",
+  "description": "Trace FBC (File-Based Catalog) operator releases back to source git revisions to verify bug fix inclusion in z-stream releases",
+  "version": "0.1.0",
+  "author": {
+    "name": "github.com/openshift-eng"
+  }
+}

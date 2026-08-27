@@ -572,6 +572,20 @@
         "pr-triage",
         "team-tools"
       ]
+    },
+    {
+      "name": "fbc-trace",
+      "source": "./plugins/fbc-trace",
+      "description": "Trace FBC (File-Based Catalog) operator releases back to source git revisions to verify bug fix inclusion in z-stream releases",
+      "version": "0.1.0",
+      "category": "openshift",
+      "keywords": [
+        "fbc",
+        "catalog",
+        "operators",
+        "z-stream",
+        "tracing"
+      ]
     }
   ]
 }

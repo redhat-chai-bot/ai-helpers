@@ -1173,6 +1173,38 @@ footer a { color: var(--primary); }
       }
     },
     {
+      "name": "fbc-trace",
+      "description": "Trace FBC (File-Based Catalog) operator releases back to source git revisions to verify bug fix inclusion in z-stream releases",
+      "version": "0.1.0",
+      "has_readme": true,
+      "commands": [
+        {
+          "name": "trace",
+          "full_name": "fbc-trace:trace",
+          "description": "Trace an FBC operator release back to its source git revision to verify whether a specific bug fix is included in a shipped z-stream",
+          "description_html": "Trace an FBC operator release back to its source git revision to verify whether a specific bug fix is included in a shipped z-stream",
+          "synopsis": "/fbc-trace:trace \u003coperator-name\u003e \u003cocp-version\u003e [--commit \u003csha\u003e] [--bug \u003cid\u003e]",
+          "body_html": "\u003cp\u003eThe \u003ccode\u003efbc-trace:trace\u003c/code\u003e command traces an FBC (File-Based Catalog) operator release back to its source git revision. This is essential for answering the question: &quot;Is my bug fix included in the shipped z-stream release?&quot;\u003c/p\u003e\u003cp\u003eFBC operators in OpenShift are built via Konflux pipelines. Each shipped operator image carries metadata (labels and annotations) that record the exact git commit used to build it. This command walks the chain from the shipped catalog entry back to the source repository commit, enabling you to verify whether a specific fix is present.\u003c/p\u003e"
+        }
+      ],
+      "skills": [],
+      "agents": [],
+      "hooks": [],
+      "mcp_servers": [],
+      "rules": [],
+      "category": "openshift",
+      "keywords": [
+        "fbc",
+        "catalog",
+        "operators",
+        "z-stream",
+        "tracing"
+      ],
+      "author": {
+        "name": "github.com/openshift-eng"
+      }
+    },
+    {
       "name": "git",
       "description": "Git workflow automation and utilities",
       "version": "0.0.7",
