@@ -4,11 +4,11 @@ description: "Apply conventional commit formatting rules. Use when generating co
 ---
 
 ## Name
-openshift-developer:git-commit-format
+git:git-commit-format
 
 ## Synopsis
 ```
-/openshift-developer:git-commit-format
+/git:git-commit-format
 ```
 
 ## Description
@@ -67,9 +67,9 @@ Get credentials in this priority order:
 
 #### Commit-Message-Assisted-by
 
-**ALWAYS include** when Claude assists with creating or generating the commit message:
+**ALWAYS include** when an AI assistant helps create or generate the commit message:
 ```
-Commit-Message-Assisted-by: Claude (via Claude Code)
+Commit-Message-Assisted-by: AI
 ```
 
 ### Gitlint Validation Rules
@@ -91,7 +91,7 @@ Commit-Message-Assisted-by: Claude (via Claude Code)
    docs: correct spelling of CHANGELOG
 
    Signed-off-by: Jane Doe <jdoe@example.com>
-   Commit-Message-Assisted-by: Claude (via Claude Code)
+   Commit-Message-Assisted-by: AI
    ```
 
 2. **With scope**:
@@ -99,7 +99,7 @@ Commit-Message-Assisted-by: Claude (via Claude Code)
    feat(azure): add workload identity support
 
    Signed-off-by: Jane Doe <jdoe@example.com>
-   Commit-Message-Assisted-by: Claude (via Claude Code)
+   Commit-Message-Assisted-by: AI
    ```
 
 3. **Multi-paragraph with footers**:
@@ -115,7 +115,7 @@ Commit-Message-Assisted-by: Claude (via Claude Code)
    Reviewed-by: John Smith
    Refs: #123
    Signed-off-by: Jane Doe <jdoe@example.com>
-   Commit-Message-Assisted-by: Claude (via Claude Code)
+   Commit-Message-Assisted-by: AI
    ```
 
 ## Arguments
@@ -128,7 +128,7 @@ When creating commits:
 - [ ] Title under 120 characters
 - [ ] Body lines under 140 characters
 - [ ] Include `Signed-off-by` footer
-- [ ] Include `Commit-Message-Assisted-by: Claude (via Claude Code)` footer
+- [ ] Include `Commit-Message-Assisted-by: AI` footer
 - [ ] Validate with `make run-gitlint` if available
 - [ ] Use "!" or `BREAKING CHANGE` for breaking changes
 
