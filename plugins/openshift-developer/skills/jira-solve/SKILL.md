@@ -49,21 +49,21 @@ current branch is not the default branch. If needed, create a feature branch nam
 the Jira key, such as `fix/OCPBUGS-12345`. Never discard existing work to prepare the
 branch; stop for user direction when unrelated changes make the transition unsafe.
 
-### 2. Size and select the chain
+### 2. Determine complexity and select the chain
 
-Size by reasoning risk and blast radius, not line count. Consider behavioral complexity,
-number of subsystems, API or compatibility impact, concurrency and security concerns,
-generated artifacts, test strategy, and ambiguity.
+Invoke `/openshift-developer:determine-complexity` with the Jira context and repository
+evidence gathered above. Use its T-shirt size to select the existing core skill chain.
+Its procedural route is advisory here: retain this skill's established plan approval and
+execution behavior. Under `--ci`, do not prompt, add an approval gate, or dispatch a new
+workflow; continue with the narrowest reasonable assumptions as described above.
 
-Use these examples as calibration rather than rigid recipes:
-
-| Size | Typical change | Core skill chain |
-|------|----------------|------------------|
-| **XS** | Obvious, isolated correction with an existing test pattern | `implement` |
-| **S** | Local behavior change with straightforward tests | `implement → check-gates` |
-| **M** | Non-trivial logic, several edge cases, or multiple files | `implement → code-review → implement → check-gates` |
-| **L** | Multiple components, API/config propagation, concurrency, upgrades, or generated artifacts | `implement → code-review → implement → check-gates`, repeating review and implementation when material findings remain |
-| **XL** | Cross-system or high-risk work whose requirements cannot safely be resolved as one change | Split into independently reviewable work or request missing design decisions before implementation |
+| Size | Core skill chain |
+|------|------------------|
+| **XS** | `implement` |
+| **S** | `implement → check-gates` |
+| **M** | `implement → code-review → implement → check-gates` |
+| **L** | `implement → code-review → implement → check-gates`, repeating review and implementation when material findings remain |
+| **XL** | Split into independently reviewable work or request missing design decisions before implementation |
 
 For an XS ticket, use only `implement` for the core work. Do not add ceremony merely
 because more skills exist. For medium and larger tickets, pass the review report back to

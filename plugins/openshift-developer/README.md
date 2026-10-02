@@ -14,7 +14,7 @@ These workflows are meant to be a common engine for different consumption models
 
 ### Pre-PR (author loop)
 
-Run `/openshift-developer:jira-solve` for the end-to-end workflow. It analyzes the Jira issue, chooses a proportional skill chain, and invokes `implement`, `code-review:pre-commit-review`, `check-gates`, and `create-pr` when appropriate.
+Run `/openshift-developer:jira-solve` for the end-to-end workflow. It analyzes the Jira issue, uses `determine-complexity` to choose a proportional skill chain, and invokes `implement`, `code-review:pre-commit-review`, `check-gates`, and `create-pr` when appropriate.
 
 Alternatively, invoke the building blocks directly when you need manual control:
 
@@ -51,6 +51,7 @@ Repeat steps 1-3 until the PR is approved and CI is green or non-actionable fail
 
 ### Skills
 
+- **determine-complexity** — Read-only assessment of T-shirt size and procedural route for a Jira issue or supplied work description.
 - **jira-solve** — Central Jira workflow orchestrator that chooses implementation, review, gate, and delivery skills based on ticket complexity.
 - **implement** — Implement Jira requirements or apply local pre-commit review findings.
 - **address-review-precommit** — Deprecated compatibility alias for `implement`; retained temporarily for existing Chai callers.
