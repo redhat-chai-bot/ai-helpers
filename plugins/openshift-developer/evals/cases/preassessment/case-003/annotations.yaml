@@ -1,0 +1,4 @@
+expected_planning_level: decomposition_required
+expected_direction_effect: "none"
+expected_read_only: true
+notes: "The program spans independent products and release tracks and cannot fit one coherent plan."

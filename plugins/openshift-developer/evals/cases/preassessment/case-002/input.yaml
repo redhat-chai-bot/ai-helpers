@@ -1,0 +1,7 @@
+issue_key: "TEST-002"
+human_direction: "none"
+issue_context: |
+  Introduce a new API field consumed by two independently released operators. The desired
+  outcome is known, but the defaulting owner, version-skew behavior, downgrade semantics,
+  and migration of existing objects are undecided. Both operators must remain compatible
+  across rolling upgrades.

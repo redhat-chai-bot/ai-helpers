@@ -1,0 +1,4 @@
+expected_planning_level: needs_clarification
+expected_direction_effect: "Conflicting authoritative planning directions require clarification."
+expected_read_only: true
+notes: "The justification should identify the direction conflict without choosing one arbitrarily."

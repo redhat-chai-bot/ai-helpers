@@ -1,0 +1,7 @@
+issue_key: "TEST-001"
+human_direction: "none"
+issue_context: |
+  A command returns success when a required configuration file is absent. The affected
+  parser and its existing unit-test table are identified. Return the established missing-file
+  error and add the matching table case. No API, migration, or cross-component behavior changes.
+  Success is the new unit test passing and existing parser tests remaining green.

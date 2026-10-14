@@ -1,0 +1,4 @@
+expected_planning_level: planning_required
+expected_direction_effect: "none"
+expected_read_only: true
+notes: "Compatibility, migration, and cross-component contracts require decisions before implementation."

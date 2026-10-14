@@ -1,0 +1,7 @@
+issue_key: "TEST-003"
+human_direction: "none"
+issue_context: |
+  Modernize authentication across the CLI, three operators, the web console, installation,
+  upgrade, documentation, telemetry, and every supported cloud. Individual deliverables have
+  different owners and release constraints. No shared rollout order or independently shippable
+  milestones are defined.

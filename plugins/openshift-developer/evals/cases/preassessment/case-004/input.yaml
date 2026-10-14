@@ -1,0 +1,6 @@
+issue_key: "TEST-004"
+human_direction: "none"
+issue_context: |
+  Improve reconciliation reliability. The report does not identify the failing behavior,
+  affected controller, reproduction, desired result, constraints, or an observable success
+  condition. Several unrelated reconcilers could match the summary.

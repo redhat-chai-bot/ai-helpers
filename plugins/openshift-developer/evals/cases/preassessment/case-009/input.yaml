@@ -1,0 +1,5 @@
+issue_key: "TEST-009"
+human_direction: "no-plan"
+issue_context: |
+  Fix the intermittent failure. No failing operation, component, logs, reproduction, expected
+  behavior, constraints, or verification criteria are supplied.

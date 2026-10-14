@@ -1,0 +1,4 @@
+expected_planning_level: needs_clarification
+expected_direction_effect: "No-plan cannot supply missing requirements or verification evidence."
+expected_read_only: true
+notes: "The justification should ask for the failing behavior, component, evidence, and success condition."

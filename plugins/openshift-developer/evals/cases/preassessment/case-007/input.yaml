@@ -1,0 +1,5 @@
+issue_key: "TEST-007"
+human_direction: "Two current authoritative callers disagree: require-plan and no-plan."
+issue_context: |
+  The underlying change is a bounded validation correction with an existing test pattern,
+  but one authoritative direction requires a plan and another requires direct implementation.

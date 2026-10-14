@@ -1,0 +1,4 @@
+expected_planning_level: planning_required
+expected_direction_effect: "Force-plan upgrades an otherwise implementation-ready result."
+expected_read_only: true
+notes: "The justification must record that planning is required because of the human direction."

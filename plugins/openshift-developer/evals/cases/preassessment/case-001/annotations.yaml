@@ -1,0 +1,4 @@
+expected_planning_level: implementation_ready
+expected_direction_effect: "none"
+expected_read_only: true
+notes: "The behavior, boundary, implementation pattern, and verification are explicit and bounded."

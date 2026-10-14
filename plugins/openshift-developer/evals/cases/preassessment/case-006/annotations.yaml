@@ -1,0 +1,4 @@
+expected_planning_level: decomposition_required
+expected_direction_effect: "No-plan does not override oversized, independently variable scope."
+expected_read_only: true
+notes: "Recommend decomposition or incremental progression without creating an epic or plan."

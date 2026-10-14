@@ -1,0 +1,6 @@
+issue_key: "TEST-005"
+human_direction: "require-plan"
+issue_context: |
+  Rename one internal metric label using the adjacent metric's established pattern and update
+  the exact unit-test assertion. The metric is not a supported API and has no migration or
+  cross-component consumer. Verification is limited to the identified package tests.

@@ -1,0 +1,6 @@
+issue_key: "TEST-006"
+human_direction: "no-plan"
+issue_context: |
+  Replace storage and networking APIs across all platform operators, installers, upgrades,
+  conformance suites, and supported providers in one delivery. Owners and independent rollout
+  boundaries differ, and milestones have not been defined.

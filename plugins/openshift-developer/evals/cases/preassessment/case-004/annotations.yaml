@@ -1,0 +1,4 @@
+expected_planning_level: needs_clarification
+expected_direction_effect: "none"
+expected_read_only: true
+notes: "The justification should ask which behavior and component are in scope and how success is verified."

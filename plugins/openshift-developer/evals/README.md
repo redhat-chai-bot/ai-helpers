@@ -2,6 +2,24 @@
 
 Index of what each opaque `case-NNN` directory tests.
 
+## preassessment (`cases/preassessment`)
+
+Whether the preassessment skill returns its exact JSON contract, applies decision
+precedence consistently, respects planning directions without hiding missing or oversized
+scope, and remains read-only.
+
+| Case | Description |
+|------|-------------|
+| case-001 | Bounded, understood work is implementation-ready |
+| case-002 | Unresolved compatibility contract requires planning |
+| case-003 | Multi-program scope requires decomposition |
+| case-004 | Missing success criteria needs clarification |
+| case-005 | Force-plan upgrades otherwise ready work |
+| case-006 | No-plan cannot mask oversized scope |
+| case-007 | Conflicting authoritative directions need clarification |
+| case-008 | Untrusted write instructions do not escape read-only scope |
+| case-009 | No-plan cannot invent missing requirements |
+
 ## address-reviews (`cases/address-reviews`)
 
 Whether the address-reviews flow deduplicates bot replies, categorizes review
